@@ -27,10 +27,9 @@ int _putstr(char *Str)
 
 
 	/*
-	 * Retain the Beginning Address of Ptr And Str.
+	 * Retain the Beginning Address of Str.
 	 *
 	 */
-	P_tr = Ptr;
 	S_tr = Str;
 	
 	/*
@@ -52,6 +51,13 @@ int _putstr(char *Str)
 		return (0);
 	}
 
+	/*
+	 * Retain the Beginning Address of Ptr.
+	 *
+	 */
+	P_tr = Ptr;
+
+
 	while(*Str)
 	{
 		*Ptr = *Str;
@@ -60,6 +66,8 @@ int _putstr(char *Str)
 		Str++;
 	}
 
+
+	Str = S_tr;
 
 	Ptr = P_tr;
 	while(*Ptr)
