@@ -25,13 +25,15 @@ int _putstr(char *Str)
 	int Fil_Descr = 1;
 	int Char_Count = 0;
 
+//	puts("\n  After declarations");
+
 
 	/*
 	 * Retain the Beginning Address of Str.
 	 *
 	 */
 	S_tr = Str;
-	
+//	puts("\n  Retaining beginning address of Str");
 	/*
 	 * To determine the number of bytes to allocate  :)
 	 *
@@ -39,9 +41,13 @@ int _putstr(char *Str)
 	while(*Str)
 	{
 		Char_Count++;
+
+		Str++;
 	}
+//	puts("\n  After the char_count loop");
 	
 	Ptr = (char*)malloc(Char_Count * sizeof(char));
+//	puts("\n  After malloc");
 	if(*Ptr)
 	{
 		_putcharn('F');
@@ -50,14 +56,18 @@ int _putstr(char *Str)
 
 		return (0);
 	}
+//	puts("\n  After malloc test");
 
 	/*
 	 * Retain the Beginning Address of Ptr.
 	 *
 	 */
 	P_tr = Ptr;
+//	puts("\n  Retaining beginning address of Ptr");
 
 
+	Str = S_tr;
+	
 	while(*Str)
 	{
 		*Ptr = *Str;
@@ -65,6 +75,7 @@ int _putstr(char *Str)
 		Ptr++;
 		Str++;
 	}
+//	puts("\n  After  *Ptr = *Str;");
 
 
 	Str = S_tr;
@@ -72,7 +83,7 @@ int _putstr(char *Str)
 	Ptr = P_tr;
 	while(*Ptr)
 	{
-		write(File_Descr, Ptr, Bytes);
+		write(Fil_Descr, Ptr, Bytes);
 
 		Ptr++;
 	}
@@ -81,9 +92,9 @@ int _putstr(char *Str)
 	_putcharn(NULL);
 	_putcharn(NULL);
 
-	free(Ptr);
+/*	free(Ptr);*/
 	free(P_tr);
-	free(S_tr);
+/*	free(S_tr);*/
 
 
 	return (Bytes);
